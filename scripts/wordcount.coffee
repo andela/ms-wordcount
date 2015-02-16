@@ -28,7 +28,7 @@ module.exports = (robot) ->
 
     console.log '\n', wordCountArray
 
-    message = "Andela wrote #{totalCount} words. yesterday"
+    message = "Andela wrote #{totalCount} words yesterday."
     user = {}
     user.room = req.params.room if req.params.room
     robot.send user, message
