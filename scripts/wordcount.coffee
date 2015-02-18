@@ -26,6 +26,16 @@ module.exports = (robot) ->
       userObject.wordcount = sum  
       wordCountArray.push(userObject)
 
+    url = "skilltree.andela.co/api/measurements"
+    data = {measure: wordCountArray}
+    robot.http(url)
+      .header({
+        'Content-Type': 'application/x-www-form-urlencoded'
+      })
+      .post(data) (err,res,body) ->
+        console.log body
+          
+
     console.log '\n', wordCountArray
 
     message = "The total wordcount for Andela users yesterday was #{totalCount} words."
