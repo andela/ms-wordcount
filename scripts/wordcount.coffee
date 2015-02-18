@@ -26,23 +26,17 @@ module.exports = (robot) ->
       userObject.wordcount = sum  
       wordCountArray.push(userObject)
 
-    url = "skilltree.andela.co/api/measurements"
-    data = {measure: wordCountArray}
-    robot.http(url)
-      .header({
-        'Content-Type': 'application/x-www-form-urlencoded'
-      })
-      .post(data) (err,res,body) ->
-        console.log body
-          
 
-    console.log '\n', wordCountArray
+    data = JSON.stringify({
+      measure: wordCountArray
+    })
+    robot.http("andela-skilltree-staging.herokuapp.com/api/measurements")
+      .post(data) (err, res, body) ->
+        console.log res
 
     message = "Andela wrote #{totalCount} words. yesterday"
     user = {}
     user.room = req.params.room if req.params.room
     robot.send user, message
-    console.log 'Total = ' + totalCount
       
-    
     res.end '\nThanks for your entries\n'
