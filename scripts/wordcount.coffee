@@ -33,7 +33,6 @@ module.exports = (robot) ->
 
       data = measure
       if !!user.orgSettings
-        # console.log Qs.stringify measure: data
         if user.orgSettings.state
           robot.http(user.orgSettings.url)
             .headers('Content-Type': 'application/x-www-form-urlencoded', 'Content-Length': data.length)
