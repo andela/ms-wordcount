@@ -45,6 +45,5 @@ module.exports = (robot) ->
     user = {}
     user.room = req.params.room if req.params.room
     robot.send user, message
-      
     
     res.end '\nThanks for your entries\n'
