@@ -33,7 +33,6 @@ module.exports = (robot) ->
 
       data = measure
       if !!user.orgSettings
-        console.log user
         # console.log Qs.stringify measure: data
         if user.orgSettings.state
           robot.http(user.orgSettings.url)
@@ -47,7 +46,6 @@ module.exports = (robot) ->
     user = {}
     user.room = req.params.room if req.params.room
     robot.send user, message
-    console.log 'Total = ' + totalCount
       
     
     res.end '\nThanks for your entries\n'
