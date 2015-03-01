@@ -2,7 +2,7 @@
   "name": "myhubot",
   "version": "0.0.0",
   "private": true,
-  "author": "routerfrank <ayfrank2@hotmail.com>",
+  "author": "Andela <devops@andela.co>",
   "description": "A simple helpful robot for your Company",
   "dependencies": {
     "hubot": "^2.11.0",

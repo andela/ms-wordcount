@@ -17,7 +17,7 @@ module.exports = (robot) ->
 
     for user in allUsers
       sum = 0
-      # console.log user unless !user.entries.length
+      console.log user unless !user.entries.length
       user.entries.map (entry) ->
         sum += wordCount entry
         
