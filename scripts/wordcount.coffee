@@ -23,7 +23,7 @@ module.exports = (robot) ->
         
       totalCount += sum
       
-      # console.log user
+      console.log user
       measure = {}
       measure["user_id"] = user.uid
       measure["value"] = sum  
