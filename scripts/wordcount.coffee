@@ -8,7 +8,7 @@
 #   None
 #
 # Commands:
-#   lifebot fetch wordcount - Retrieves all the entries written in previous and tells you the total wordcount.
+#   lifebot fetch wordcount - Retrieves all the entries written in Andelife for the previous day and tells you the total wordcount.
 #
 # Author:
 #   Andela
