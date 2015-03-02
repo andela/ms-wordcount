@@ -20,10 +20,12 @@ module.exports = (robot) ->
     robotWorker req, res, robot
 
   robot.respond "/fetch .* wordcount/", (msg)->
-    msg.http("http://life.andela.co/send-ms-wordcount")
+    req = {body: []}
+    msg.http("http://localhost:5555/send-ms-wordcount/slack")
       .get() (err, res, data) ->
-        console.log data
-    robotWorker req, res, msg
+        req.body.allEntries = data
+        req.params = {room:""}
+        robotWorker req, res, msg
 
 # Function to remove all spaces and linebreaks and replace with commas then
 # split the post and return the length of all the words in the entry
@@ -37,6 +39,7 @@ wordCount = (entry) ->
 # calculate wordcount and post to organisation webhook endpoint
 robotWorker = (req, res, robot) ->
   allUsers = JSON.parse req.body.allEntries if req.body.allEntries
+  console.log allUsers, "all Users"
   totalCount = 0
   for user in allUsers
     sum = 0
@@ -52,7 +55,7 @@ robotWorker = (req, res, robot) ->
     measure["organization_id"] = user.org
 
     data = measure
-    console.log user
+    console.log user, "user"
     if !!user.orgSettings
       if user.orgSettings.state
         robot.http(user.orgSettings.url)
@@ -68,9 +71,10 @@ robotWorker = (req, res, robot) ->
 
   message = "Andela wrote #{totalCount} words yesterday on Andelife."
   room = req.params.room if req.params.room
+  console.log room
   if room == 'general'
     robot.messageRoom room, message
   else 
     robot.send message
-  
-  res.end '\nThanks for your entries\n'
+  if(res.end)
+    res.end '\nThanks for your entries\n'
