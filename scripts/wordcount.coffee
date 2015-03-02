@@ -23,7 +23,7 @@ module.exports = (robot) ->
     msg.http("http://life.andela.co/send-ms-wordcount")
       .get() (err, res, data) ->
         console.log data
-    # robotWorker req, res, robot
+    robotWorker req, res, msg
 
 # Function to remove all spaces and linebreaks and replace with commas then
 # split the post and return the length of all the words in the entry
@@ -67,8 +67,10 @@ robotWorker = (req, res, robot) ->
       console.log "No settings found!"
 
   message = "Andela wrote #{totalCount} words yesterday on Andelife."
-  user = {}
-  user.room = req.params.room if req.params.room
-  robot.send user, message
+  room = req.params.room if req.params.room
+  if room == 'general'
+    robot.messageRoom room, message
+  else 
+    robot.send message
   
   res.end '\nThanks for your entries\n'
