@@ -21,7 +21,7 @@ module.exports = (robot) ->
 
   robot.respond "/fetch .* wordcount/", (msg)->
     req = {body: []}
-    msg.http("http://localhost:5555/send-ms-wordcount/slack")
+    msg.http("http://life.andela.co/send-ms-wordcount/slack")
       .get() (err, res, data) ->
         req.body.allEntries = data
         req.params = {room:""}
