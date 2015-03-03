@@ -19,7 +19,7 @@ module.exports = (robot) ->
   robot.router.post "/entries/:room", (req, res) ->
     robotWorker req, res, robot
 
-  robot.respond "/fetch .* wordcount/", (msg)->
+  robot.respond /fetch .* wordcount/i, (msg)->
     req = {body: []}
     msg.http("http://life.andela.co/send-ms-wordcount/slack")
       .get() (err, res, data) ->
