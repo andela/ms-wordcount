@@ -23,6 +23,7 @@ module.exports = (robot) ->
     req = {body: []}
     msg.http("http://life.andela.co/send-ms-wordcount/slack")
       .get() (err, res, data) ->
+        console.log data
         req.body.allEntries = data
         req.params = {room:""}
         robotWorker req, res, msg
@@ -38,6 +39,7 @@ wordCount = (entry) ->
 # Loop through the array of objects received, 
 # calculate wordcount and post to organisation webhook endpoint
 robotWorker = (req, res, robot) ->
+  console.log req.body.allEntries
   allUsers = JSON.parse req.body.allEntries if req.body.allEntries
   console.log allUsers, "all Users"
   totalCount = 0
